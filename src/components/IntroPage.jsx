@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { BarcaContext } from '../Context/BarcaContext';
 
 const IntroPage = () => {
-	const {showSecondPage,data,setData,fetchPlayerData}=useContext(BarcaContext)
+	const {showSecondPage,data,setData}=useContext(BarcaContext)
 
 
 	const handleData=(e)=>{

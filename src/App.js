@@ -12,6 +12,7 @@ import MainPage from "./components/MainPage";
 function App() {
   const [showFirstPage,setShowFirstPage]=useState(true)
   const [data,setData]=useState("")
+  const [isLoading,setIsLoading]=useState(true)
 
 
   
@@ -19,9 +20,10 @@ function App() {
     setShowFirstPage(true)
   }
   const fetchPlayerData= async()=>{
-    axios.get(`https://barca-players-info.herokuapp.com/api/${data}`).then(res=>{
+    await axios.get(`https://barca-players-info.herokuapp.com/api/${data}`).then(res=>{
       console.log(res.data)
       setData(res.data)
+      setIsLoading(false)
     }).catch(err=>console.log(err))
   }
 
@@ -34,7 +36,7 @@ function App() {
   
   return (
       <div className="App">
-        <BarcaContext.Provider value={{showFirstPage,setShowFirstPage,showSecondPage,Back,data,setData,fetchPlayerData}}>
+        <BarcaContext.Provider value={{showFirstPage,setShowFirstPage,showSecondPage,Back,data,setData,fetchPlayerData,isLoading}}>
         <Nav />
        { showFirstPage&&<IntroPage />}
         {!showFirstPage&&<MainPage />}

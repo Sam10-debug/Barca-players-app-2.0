@@ -1,4 +1,4 @@
-import pedri from '../images/pedri.jpg'
+
 import { useContext } from 'react';
 import { BarcaContext } from '../Context/BarcaContext';
 

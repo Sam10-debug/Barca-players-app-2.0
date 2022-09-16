@@ -5,11 +5,10 @@ import { useContext, useState } from 'react';
 import { BarcaContext } from '../Context/BarcaContext';
 
 function MainPage() {
-	const {data}=useContext(BarcaContext)
+	const {data,isLoading}=useContext(BarcaContext)
   return (
 	<div>
-		{!data&&<Loading />}
-		{data&&<SecondPage />}
+		{isLoading? <Loading />:<SecondPage />}
 	</div>
   )
 }
