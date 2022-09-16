@@ -8,7 +8,8 @@ function MainPage() {
 	const {data,isLoading}=useContext(BarcaContext)
   return (
 	<div>
-		{isLoading? <Loading />:<SecondPage />}
+		{/* {isLoading? <Loading />:<SecondPage />} */}
+		{data.name?<SecondPage />:<Loading />}
 	</div>
   )
 }

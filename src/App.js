@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IntroPage from "./components/IntroPage";
 import Nav from "./components/Nav";
 
 import { BarcaContext  } from "./Context/BarcaContext";
 import axios from 'axios'
 import MainPage from "./components/MainPage";
+
 
 
 
@@ -21,9 +22,13 @@ function App() {
   }
   const fetchPlayerData= async()=>{
     await axios.get(`https://barca-players-info.herokuapp.com/api/${data}`).then(res=>{
-      console.log(res.data)
+      console.log(res)
       setData(res.data)
-      setIsLoading(false)
+      if(!res.status===200){
+        setIsLoading(true)
+      }else{
+        setIsLoading(false)
+      }
     }).catch(err=>console.log(err))
   }
 
@@ -33,6 +38,12 @@ function App() {
     fetchPlayerData()
   
   }
+  
+  useEffect(()=>{
+    fetch(`https://barca-players-info.herokuapp.com/api/${data}`)
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+  })
   
   return (
       <div className="App">
